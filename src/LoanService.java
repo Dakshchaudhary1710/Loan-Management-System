@@ -11,7 +11,9 @@ public class LoanService {
         nextApplicationId = 1001;
     }
 
-    public LoanApplication createApplication(Customer customer, Loan loan) {
+    public LoanApplication createApplication(
+            Customer customer, Loan loan) {
+
         LoanApplication application =
                 new LoanApplication(nextApplicationId, customer, loan);
 
@@ -22,6 +24,7 @@ public class LoanService {
     }
 
     public LoanApplication findApplication(int applicationId) {
+
         for (LoanApplication application : applications) {
             if (application.getApplicationId() == applicationId) {
                 return application;
@@ -35,7 +38,13 @@ public class LoanService {
         return applications.size();
     }
 
+    // Returns a copy of all loan applications.
+    public ArrayList<LoanApplication> getAllApplications() {
+        return new ArrayList<>(applications);
+    }
+
     public void displayAllApplications() {
+
         if (applications.isEmpty()) {
             System.out.println("No loan applications found.");
             return;
@@ -48,6 +57,7 @@ public class LoanService {
     }
 
     public void displayApplicationsByStatus(String status) {
+
         boolean found = false;
 
         for (LoanApplication application : applications) {

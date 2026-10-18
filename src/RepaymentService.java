@@ -7,16 +7,12 @@ public class RepaymentService {
     private ArrayList<Repayment> repayments;
     private int nextPaymentId;
 
-    // Constructor
     public RepaymentService() {
         repayments = new ArrayList<>();
         nextPaymentId = 5001;
     }
 
-    // Record a repayment
-    public Repayment recordPayment(
-            LoanApplication application, double amount) {
-
+    public Repayment recordPayment(LoanApplication application, double amount) {
         if (application == null) {
             throw new IllegalArgumentException(
                     "Loan application cannot be null."
@@ -42,9 +38,7 @@ public class RepaymentService {
         return repayment;
     }
 
-    // Calculate total repayments for an application
     public double getTotalRepaid(int applicationId) {
-
         double total = 0;
 
         for (Repayment repayment : repayments) {
@@ -56,9 +50,18 @@ public class RepaymentService {
         return total;
     }
 
-    // Display all repayments
-    public void displayAllRepayments() {
+    // Returns the total of all repayment records.
+    public double getTotalCollected() {
+        double total = 0;
 
+        for (Repayment repayment : repayments) {
+            total += repayment.getAmount();
+        }
+
+        return total;
+    }
+
+    public void displayAllRepayments() {
         if (repayments.isEmpty()) {
             System.out.println("No repayment records found.");
             return;
@@ -70,9 +73,7 @@ public class RepaymentService {
         }
     }
 
-    // Display repayments for a particular application
     public void displayRepaymentsByApplication(int applicationId) {
-
         boolean found = false;
 
         for (Repayment repayment : repayments) {
